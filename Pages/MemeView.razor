@@ -1,0 +1,104 @@
+﻿@page "/all_memes/"
+@inject Microsoft.AspNetCore.Components.NavigationManager navigationManager
+
+<h1>Memes</h1>
+
+<div>
+    @for (int i = 0; i < imagesCounter; i += 2)
+    {
+        <div class="image_row">
+            <div class="image_big_container">
+                <div class="@(displayedImages.Count + 1 < 131 ? "image_small_container_left" : "image_small_container_center")">
+                    <img src="meme_folder/@(GetUndisplayedImageNumber(i, 0)).jpg">
+                    <span num="@i" class="@(UserInfo.likedImages.Contains(displayedImages[i]) ? "icon_active" : "icon")" @onclick="@(async (e) => await LikeOrUnlikeMeme(e))"></span>
+                </div>
+                @if (displayedImages.Count != 131)
+                {
+                    <div class="image_small_container_right">
+                        <img src="meme_folder/@(GetUndisplayedImageNumber(i, 1)).jpg">
+                        <span num="@(i+1)" class="@(UserInfo.likedImages.Contains(displayedImages[i + 1]) ? "icon_active" : "icon")" @onclick="@(async (e) => await LikeOrUnlikeMeme(e))"></span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div class="buttons_container">
+    <button class="btn btn-primary" @onclick="IncreaseMemesCount">Display 10 more memes XD</button>
+
+    <button class="btn btn-primary" @onclick="DecreaseMemesCount">Hide last 10 memes :(</button>
+</div>
+
+@code {
+    public List<int> displayedImages = new List<int>();
+    private Random rnd = new Random();
+    private int imagesCounter = 10;
+
+    private void IncreaseMemesCount()
+    {
+        if (imagesCounter < 130)
+        {
+            imagesCounter += 10;
+        }
+        else if (imagesCounter == 130)
+        {
+            imagesCounter = 131;
+        }
+    }
+
+    protected async Task LikeOrUnlikeMeme(MouseEventArgs e)
+    {
+        var result = await JSRuntime.InvokeAsync<string>("getElementNumber", new double[] { e.ClientX, e.ClientY });
+        int.TryParse(result, out int i);
+        int memeNum = displayedImages[i];
+        if (UserInfo.likedImages.Contains(memeNum))
+        {
+            UserInfo.likedImages.Remove(memeNum);
+        }
+        else
+        {
+            UserInfo.likedImages.Add(memeNum);
+        }
+    }
+
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("makeIconsClickable");
+    }
+
+    private void DecreaseMemesCount()
+    {
+        if (imagesCounter != 10)
+        {
+            for (int i = displayedImages.Count - 1; i >= imagesCounter - 10; i--)
+            {
+                displayedImages.RemoveAt(i);
+            }
+            imagesCounter -= 10;
+        }
+    }
+
+    private string GetUndisplayedImageNumber(int i, int firstOrSecond)
+    {
+        int a;
+        if (i + firstOrSecond < displayedImages.Count)
+        {
+            a = displayedImages[i + firstOrSecond];
+        }
+        else
+        {
+            do
+            {
+                a = rnd.Next(1, 132);
+            }
+            while (displayedImages.Contains(a));
+            displayedImages.Add(a);
+        }
+
+        return a.ToString();
+    }
+}

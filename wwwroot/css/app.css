@@ -1,5 +1,179 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+/*Custom styles*/
+@media only screen and (max-width: 1600px) {
+    .icon_active {
+        content: url('../like.png');
+        margin: auto auto 15px auto;
+        height: 100px;
+        width: 250px;
+        display: block;
+        border: none;
+    }
+
+        .icon_active:hover {
+            content: url('../like_hover.png');
+        }
+
+    .icon {
+        content: url('../dk.png');
+        margin: auto auto 15px auto;
+        height: 100px;
+        width: 250px;
+        display: block;
+        border: none;
+    }
+
+        .icon:hover {
+            content: url('../dk_hover.png');
+        }
+
+    .buttons_container {
+        margin: 15px auto 40px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .buttons_container > button {
+            margin: 15px;
+        }
+
+    .image_row {
+        margin: 50px auto 150px auto;
+    }
+
+    .image_big_container {
+        width: 100%;
+        margin: 0 auto 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image_small_container_left {
+        transition: all 1s ease-in-out;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+        border-radius: 10px;
+        border: inset;
+        margin: 75px;
+    }
+
+        .image_small_container_left:hover {
+            transform: translateX(50%) scale(1.5);
+        }
+
+        .image_small_container_left > img {
+            margin: 15px;
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+    .image_small_container_right {
+        transition: all 1s ease-in-out;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+        border-radius: 10px;
+        border: inset;
+        margin: 75px;
+    }
+
+        .image_small_container_right:hover {
+            transform: translateX(-50%) scale(1.5);
+        }
+
+        .image_small_container_right > img {
+            margin: 15px;
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+    .image_small_container_center {
+        transition: all 1s ease-in-out;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+        border-radius: 10px;
+        border: inset;
+        margin: 75px;
+    }
+
+        .image_small_container_center:hover {
+            transform: scale(1.5);
+        }
+
+        .image_small_container_center > img {
+            margin: 15px;
+            max-width: 400px;
+            max-height: 400px;
+        }
+}
+
+@media only screen and (max-width: 640px) {
+    .icon_active {
+        background: url('../like.png');
+        height: 20px;
+        width: 20px;
+        display: block;
+        border: none;
+    }
+
+    .buttons_container {
+        margin: 8px auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .buttons_container > button {
+            margin: 15px;
+        }
+
+    .image_row {
+        margin: 0px auto 0px auto;
+    }
+
+    .image_big_container {
+        width: 100%;
+        margin: 0 auto 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .image_small_container_left {
+        transition: all 1s ease-in-out;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+        border-radius: 5px;
+        border: inset;
+        margin: 30px;
+    }
+
+    .image_small_container_right {
+        transition: all 1s ease-in-out;
+        background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+        border-radius: 5px;
+        border: inset;
+        margin: 30px;
+    }
+
+    .image_small_container_left:hover {
+        transform: translateX(50%) scale(1.5);
+    }
+
+    .image_small_container_right:hover {
+        transform: translateX(-50%) scale(1.5);
+    }
+
+    .image_small_container_left > img, .image_small_container_right > img {
+        margin: 5px;
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+
+
+/*Custom styles*/
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
