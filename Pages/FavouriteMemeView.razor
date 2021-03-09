@@ -14,13 +14,13 @@
             <div class="image_row">
                 <div class="image_big_container">
                     <div class="@(i + 1 < UserInfo.likedImages.Count ? "image_small_container_left" : "image_small_container_center")">
-                        <img src="meme_folder/@(UserInfo.likedImages[i]).jpg">
+                        <img class="image_in_small_container" src="meme_folder/@(UserInfo.likedImages[i]).jpg">
                         <span num="@i" class="icon_active" @onclick="@(async (e) => await UnlikeMeme(e))"></span>
                     </div>
                     @if (i + 1 < UserInfo.likedImages.Count)
                     {
                         <div class="image_small_container_right">
-                            <img src="meme_folder/@(UserInfo.likedImages[++i]).jpg">
+                            <img class="image_in_small_container" src="meme_folder/@(UserInfo.likedImages[++i]).jpg">
                             <span num="@(i)" class="icon_active" @onclick="@(async (e) => await UnlikeMeme(e))"></span>
                         </div>
                     }

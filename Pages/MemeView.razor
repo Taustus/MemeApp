@@ -9,13 +9,13 @@
         <div class="image_row">
             <div class="image_big_container">
                 <div class="@(displayedImages.Count + 1 < 131 ? "image_small_container_left" : "image_small_container_center")">
-                    <img src="meme_folder/@(GetUndisplayedImageNumber(i, 0)).jpg">
+                    <img class="image_in_small_container" src="meme_folder/@(GetUndisplayedImageNumber(i, 0)).jpg">
                     <span num="@i" class="@(UserInfo.likedImages.Contains(displayedImages[i]) ? "icon_active" : "icon")" @onclick="@(async (e) => await LikeOrUnlikeMeme(e))"></span>
                 </div>
                 @if (displayedImages.Count != 131)
                 {
                     <div class="image_small_container_right">
-                        <img src="meme_folder/@(GetUndisplayedImageNumber(i, 1)).jpg">
+                        <img class="image_in_small_container" src="meme_folder/@(GetUndisplayedImageNumber(i, 1)).jpg">
                         <span num="@(i+1)" class="@(UserInfo.likedImages.Contains(displayedImages[i + 1]) ? "icon_active" : "icon")" @onclick="@(async (e) => await LikeOrUnlikeMeme(e))"></span>
                     </div>
                 }
